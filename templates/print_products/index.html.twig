@@ -13,6 +13,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Detail</th>
+            <th>Objednavka</th>
         </thead>
         <tbody>
         {% for product in products %}
@@ -21,6 +22,9 @@
                 <td>{{ product.name }}</td>
                 <td>
                     <a href="{{ path('detail_products', {'id': product.id}) }}">Detail</a>
+                </td>
+                <td>
+                    <a href="{{ path('orderr_new', {'id': product.id}) }}">Objednat</a>
                 </td>
             </tr>
         {% endfor %}
