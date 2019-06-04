@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CountryRepository")
  */
-class Product
+class Country
 {
     /**
      * @ORM\Id()
@@ -24,9 +22,10 @@ class Product
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Orderr", inversedBy="countries")
      */
-    private $category;
+    private $orderr;
+
 
 
     public function getId(): ?int
@@ -46,14 +45,14 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getOrderr(): ?Orderr
     {
-        return $this->category;
+        return $this->orderr;
     }
 
-    public function setCategory(?Category $category): self
+    public function setOrderr(?Orderr $orderr): self
     {
-        $this->category = $category;
+        $this->orderr = $orderr;
 
         return $this;
     }
