@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,7 @@ class PrintProductsController extends AbstractController
     {
         return $this->render('print_products/index.html.twig', [
             'products' => $productRepository->findAll(),
+//            'category' => $categoryRepository->findAll()
         ]);
     }
 }

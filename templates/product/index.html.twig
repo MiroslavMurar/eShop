@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Sprava Produktov</th>
+                <th>Categoria</th>
                 <th>Sprava Categorii</th>
             </tr>
         </thead>
@@ -22,6 +23,13 @@
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                </td>
+                <td>{%  for x in product.category %}
+                    {{ x.name }}
+                    {%  endfor %}
+
+
+
                 </td>
             <td>
                 <a href="{{ path('category_edit', {'id': product.id}) }}">edit</a>

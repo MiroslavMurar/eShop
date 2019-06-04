@@ -24,9 +24,14 @@ class Product
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="products")
      */
     private $category;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -46,15 +51,30 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?Category
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategory(): Collection
     {
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function addCategory(Category $category): self
     {
-        $this->category = $category;
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
 
         return $this;
     }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->category->contains($category)) {
+            $this->category->removeElement($category);
+        }
+
+        return $this;
+    }
+
 }
