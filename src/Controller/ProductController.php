@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
+use App\Form\CategoryType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -79,6 +81,31 @@ class ProductController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+    /**
+     * @Route("/category/{id}/edit", name="category_product_edit", methods={"GET","POST"})
+     */
+    public function categoryEdit(Request $request, Product $product): Response
+    {
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('product_index', [
+                'id' => $product->getId(),
+            ]);
+        }
+
+        return $this->render('product/categoryEdit.html.twig', [
+            'product' => $product,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 
     /**
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
