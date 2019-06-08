@@ -17,29 +17,25 @@ class OrderrType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('countries', EntityType::class, array(
+            ->add('country', EntityType::class, array(
                 'class' => Country::class,
                 'multiple' => true,
                 'expanded' => true,
             ))
 
 
-            ->add('payments', EntityType::class, array(
+            ->add('payment', EntityType::class, array(
                 'class' => Payment::class,
                 'multiple' => true,
                 'expanded' => true,
             ))
 
 
-            ->add('transports', EntityType::class, array(
+            ->add('transport', EntityType::class, array(
                 'class' => Transport::class,
                 'multiple' => true,
                 'expanded' => true,
             ))
-
-
-
-
         ;
     }
 
