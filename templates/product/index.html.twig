@@ -11,6 +11,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Sprava Produktov</th>
+                <th>Nazov Kategorie </th>
+
                 <th>Sprava Categorii</th>
             </tr>
         </thead>
@@ -23,6 +25,7 @@
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
                 </td>
+                <td>{{ product.category.name }}</td>
             <td>
                 <a href="{{ path('category_edit', {'id': product.id}) }}">edit</a>
             </td>
