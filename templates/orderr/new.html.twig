@@ -6,6 +6,43 @@
     <h1>Vytvorenie novej objednavky</h1>
 
     {{ form_start(form) }}
+
+
+    <table class="table">
+        <tbody>
+        <tr>
+            {% if form.name == true %}
+                {#{{ form_widget(form.name, { 'attr': {'class': 'hidden-row'} }) }}#}
+                {% do form.name.setRendered() %}
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td>
+                <h3>Krajina </h3><br>
+                {{ form_widget(form.countries) }}<br>
+                {{ form_errors(form.countries) }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <h3>Platba </h3><br>
+                {{ form_widget(form.payments) }}<br>
+                {{ form_errors(form.payments) }}
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <h3>Doprava</h3><br>
+                {{ form_widget(form.transports) }}<br>
+                {{ form_errors(form.transports) }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Objednat') }}</button>
     {{ form_end(form) }}
