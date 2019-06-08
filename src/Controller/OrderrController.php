@@ -34,6 +34,14 @@ class OrderrController extends AbstractController
     }
 
 
+    /**
+     * @Route("/outOfStock", name="out_of_stock", methods={"GET"})
+     */
+    public function outOfStock()
+    {
+        return $this->render('orderr/outOfStock.html.twig');
+    }
+
 
     /**
      * @Route("/new", name="orderr_new", methods={"GET","POST"})
