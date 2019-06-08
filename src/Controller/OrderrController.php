@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Orderr;
+use App\Entity\Product;
 use App\Form\OrderrType;
 use App\Repository\OrderrRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,6 +45,38 @@ class OrderrController extends AbstractController
 
 
     /**
+    * @Route("/{id}/new", name="orderr_new_id", methods={"GET","POST"})
+    */
+    public function id_new(Request $request, Product $product): Response
+    {
+        $orderr = new Orderr();
+        $form = $this->createForm(OrderrType::class, $orderr);
+        $form->handleRequest($request);
+
+
+        if($product->getStock() == 0) {
+            return $this->redirectToRoute('out_of_stock');
+        };
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($orderr);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('dakovna_stranka');
+        }
+
+        return $this->render('orderr/new.html.twig', [
+            'orderr' => $orderr,
+            'form' => $form->createView(),
+            'product' => $product
+        ]);
+    }
+
+
+
+    /**
      * @Route("/new", name="orderr_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -57,7 +90,7 @@ class OrderrController extends AbstractController
             $entityManager->persist($orderr);
             $entityManager->flush();
 
-            return $this->redirectToRoute('dakovna_stranka');
+            return $this->redirectToRoute('print_products');
         }
 
         return $this->render('orderr/new.html.twig', [

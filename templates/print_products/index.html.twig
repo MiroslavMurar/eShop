@@ -41,7 +41,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('detail_products',{'id': product.id})}}">Viac</a></button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('orderr_new', {'id': product.id})}}">Objednat</a></button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('orderr_new_id', {'id': product.id})}}">Objednat</a></button>
                                             {#<button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('basket_add', {'id': product.id})}}">Kosik</a></button>#}
                                         </div>
                                         <small class="text-muted"></small>
@@ -50,6 +50,7 @@
                             </div>
                         </div>
                     {% endfor %}
+
                 </div>
             </div>
         </div>
