@@ -17,24 +17,41 @@ class OrderrType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('country', EntityType::class, array(
+            ->add('country', EntityType::class, [
                 'class' => Country::class,
-                'multiple' => true,
-                'expanded' => true,
-            ))
+                'choice_label' => 'name',
+//                'multiple' => true,
+//                'expanded' => true,
+            ])
 
+//
+//
+//            ->add('country', EntityType::class, array(
+//                'class' => Country::class,
+////                'multiple' => true,
+//                'expanded' => true,
+//            ))
+//
+//            ->add('country', EntityType::class, [
+//                'class' => Country::class,
+//                'choice_label' => 'name'
+//            ])
 
+//
+//
             ->add('payment', EntityType::class, array(
                 'class' => Payment::class,
-                'multiple' => true,
-                'expanded' => true,
+                'choice_label' => 'name',
+//                'multiple' => true,
+//                'expanded' => true,
             ))
 
 
             ->add('transport', EntityType::class, array(
                 'class' => Transport::class,
-                'multiple' => true,
-                'expanded' => true,
+                'choice_label' => 'name',
+//                'multiple' => true,
+//                'expanded' => true,
             ))
         ;
     }
