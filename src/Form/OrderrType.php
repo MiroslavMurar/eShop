@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Country;
 use App\Entity\Orderr;
+use App\Entity\Payment;
+use App\Entity\Transport;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,6 +17,29 @@ class OrderrType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('countries', EntityType::class, array(
+                'class' => Country::class,
+                'multiple' => true,
+                'expanded' => true,
+            ))
+
+
+            ->add('payments', EntityType::class, array(
+                'class' => Payment::class,
+                'multiple' => true,
+                'expanded' => true,
+            ))
+
+
+            ->add('transports', EntityType::class, array(
+                'class' => Transport::class,
+                'multiple' => true,
+                'expanded' => true,
+            ))
+
+
+
+
         ;
     }
 
