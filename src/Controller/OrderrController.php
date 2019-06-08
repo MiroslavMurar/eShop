@@ -26,6 +26,16 @@ class OrderrController extends AbstractController
     }
 
     /**
+     * @Route("/dakovnaStranka", name="dakovna_stranka", methods={"GET"})
+     */
+    public function dakovnaStranka()
+    {
+        return $this->render('orderr/dakovnaStranka.html.twig');
+    }
+
+
+
+    /**
      * @Route("/new", name="orderr_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -39,7 +49,7 @@ class OrderrController extends AbstractController
             $entityManager->persist($orderr);
             $entityManager->flush();
 
-            return $this->redirectToRoute('print_products');
+            return $this->redirectToRoute('dakovna_stranka');
         }
 
         return $this->render('orderr/new.html.twig', [
