@@ -3,6 +3,7 @@
 {% block title %}New Orderr{% endblock %}
 
 {% block body %}
+
     <h1>Vytvorenie novej objednavky</h1>
 
     {{ form_start(form) }}
@@ -48,5 +49,67 @@
     {{ form_end(form) }}
 
     <a href="{{ path('print_products') }}"> Spat na vypis produktov </a>
-{% endblock %}
+
+
+<div class="col-sm-4">
+
+
+    Celkova cena :<span id="celkovaCena">  {{ product.price }} $
+            </span>
+    <br>
+    Doprava: <span id="doprava"> {{ product.transport.price }} </span>
+    <br>
+    Platba:<span id="platba"> </span>
+
+
+</div>
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        let productPrice = {{ product.price  }};
+        let payment = parseInt($('#orderr_payment option:selected').attr('data-payment'));
+        let transport = parseInt($('#orderr_transport option:selected').attr('data-transport'));
+        let totalPrice = productPrice + payment + transport;
+
+        $('#celkovaCena').on('click', function(e) {
+        e.preventDefault();
+        let productPrice = {{ product.price }};
+        let payment = parseInt($('#orderr_payment').attr('data-payment'));
+        let transport = parseInt($('#orderr_transport').attr('data-transport'));
+        $('#celkovaCena').text(totalPrice);
+        });
+
+        $('#orderr_payment').on('change', function(e) {
+            e.preventDefault();
+            let productPrice = {{ product.price }};
+            let productCount = $('#objednavka_count').val();
+            let zaprodukty = productPrice * productCount;
+            let payment = parseInt($('#orderr_payment option:selected').attr('data-payment'));
+            let transport = parseInt($('#orderr_transport option:selected').attr('data-transport'));
+            let paymentandshipping = payment + shipping;
+            let totalPrice = productPrice + payment + transport;
+
+            $('#cenazaplatbu').text(payment);
+            $('#celkovaCena').text(totalPrice);
+            $('#zaprodukty').text(zaprodukty)
+        });
+
+        $('#orderr_transport').on('change', function(e) {
+            e.preventDefault();
+            let productPrice = {{ product.price }};
+            let productCount = $('#objednavka_count').val();
+            let zaprodukty = productPrice * productCount;
+            let payment = parseInt($('#orderr_payment option:selected').attr('data-payment'));
+            let transport = parseInt($('#orderr_transport option:selected').attr('data-transport'));
+            let paymentandshipping = payment + shipping;
+            let totalPrice = productPrice + payment + transport;
+            $('#cenazadopravu').text(transport);
+            $('#celkovaCena').text(totalPrice);
+            $('#zaprodukty').text(zaprodukty)
+        });
+
+    </script>
+        {% endblock %}
 

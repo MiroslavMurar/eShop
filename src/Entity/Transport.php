@@ -28,6 +28,11 @@ class Transport
      */
     private $orderrs;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $price;
+
     public function __construct()
     {
         $this->orderrs = new ArrayCollection();
@@ -82,6 +87,18 @@ class Transport
                 $orderr->setTransport(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
