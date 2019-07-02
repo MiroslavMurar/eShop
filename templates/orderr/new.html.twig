@@ -57,9 +57,18 @@
     Celkova cena :<span id="celkovaCena">  {{ product.price }} $
             </span>
     <br>
-    Doprava: <span id="doprava"> {{ product.transport.price }} </span>
+    {#Doprava: <span id="doprava"> {{ product.transport.price }} </span>#}
     <br>
     Platba:<span id="platba"> </span>
+
+    <br>
+    <button type="button"
+            onclick="document.getElementById('demo').innerHTML = Date()">
+        Click me to display Date and Time.</button>
+
+    <p id="demo"></p>
+
+
 
 
 </div>
