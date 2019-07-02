@@ -44,6 +44,8 @@ class OrderrType extends AbstractType
                 'choice_label' => 'name',
 //                'multiple' => true,
 //                'expanded' => true,
+                'choice_attr' => function (Payment $payment) {return ['data-payment' => $payment ->getPrice()];}
+
             ))
 
 
@@ -52,6 +54,8 @@ class OrderrType extends AbstractType
                 'choice_label' => 'name',
 //                'multiple' => true,
 //                'expanded' => true,
+            'choice_attr' => function (Transport $transport) {return ['data-transport' => $transport->getPrice()];}
+
             ))
         ;
     }
